@@ -1,0 +1,34 @@
+     1                                 %line 1+1 fibo.asm
+     2                                 [section .text]
+     3                                 [global _start]
+     4                                 _start:
+     5 00000000 48C7C000000000          mov rax, 0
+     6 00000007 48C7C301000000          mov rbx, 1
+     7 0000000E 49C7C003000000          mov r8, 3
+     8 00000015 49C7C104000000          mov r9, 4
+     9 0000001C 49C7C200000000          mov r10,0
+    10                                 fib1:
+    11 00000023 4983F901                cmp r9, 1
+    12 00000027 7507                    jnz fib2
+    13 00000029 49C7C200000000          mov r10, 0
+    14 00000030 EB24                    jmp exit
+    15                                 fib2:
+    16 00000032 4983F902                cmp r9, 2
+    17 00000036 7507                    jnz con
+    18 00000038 49C7C201000000          mov r10, 1
+    19 0000003F EB15                    jmp exit
+    20                                 con:
+    21                                 forall:
+    22 00000041 4D39C8                  cmp r8,r9
+    23 00000044 7F10                    jg con1
+    24 00000046 4801D8                  add rax, rbx
+    25 00000049 4989C2                  mov r10, rax
+    26 0000004C 4889D8                  mov rax, rbx
+    27 0000004F 4C89D3                  mov rbx, r10
+    28 00000052 4983C001                add r8, 1
+    29 00000056 EBE7                    jmp forall
+    30                                 con1:
+    31                                 exit:
+    32 00000058 48C7C001000000          mov rax, 1
+    33 0000005F CD80                    int 0x80
+    34                                 

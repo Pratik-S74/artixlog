@@ -1,0 +1,10 @@
+     1                                 %line 1+1 ascii.asm
+     2                                 [section .text]
+     3                                 [global main]
+     4                                 main:
+     5 00000000 48C7C005000000          mov rax,5
+     6 00000007 4883C030                add rax ,48
+     7                                 
+     8 0000000B 48C7C03C000000          mov rax,60
+     9 00000012 4831C0                  xor rax,rax
+    10 00000015 0F05                    syscall

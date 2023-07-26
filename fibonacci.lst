@@ -1,0 +1,29 @@
+     1                                 %line 1+1 fibonacci.asm
+     2                                 [section .bss]
+     3 00000000 <gap>                   fib resq 1
+     4                                 
+     5                                 [section .text]
+     6                                 [global main]
+     7                                 %line 7+1 fibonacci.asm
+     8                                 
+     9                                 main:
+    10                                 
+    11 00000000 48C7C000000000          mov rax, 0
+    12 00000007 48C7C301000000          mov rbx, 1
+    13                                 
+    14                                 
+    15 0000000E 48C7C10A000000          mov rcx, 10
+    16 00000015 4883F902                cmp rcx, 2
+    17 00000019 7605                    jbe fib_done
+    18                                 
+    19                                 fib_loop:
+    20 0000001B 4801D8                  add rax, rbx
+    21 0000001E 4893                    xchg rax, rbx
+    22 00000020 E2F7                    loop fib_loop
+    23                                 fib_done:
+    24 00000022 48891C25[00000000]      mov [fib], rbx
+    25                                 
+    26                                 
+    27 0000002A 48C7C03C000000          mov rax, 60
+    28 00000031 4831FF                  xor rdi, rdi
+    29 00000034 0F05                    syscall
